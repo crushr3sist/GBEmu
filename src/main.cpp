@@ -9,7 +9,7 @@ struct Reg_8_bit {
   uint8_t C; //  |
   uint8_t D; //  | - General Purpose registers
   uint8_t E; //  |    used for memory addressing
-  uint8_t H; //  |    or data holding 
+  uint8_t H; //  |    or data holding
   uint8_t L; //  |
 };
 
@@ -18,9 +18,13 @@ struct Reg_16_bit {
   uint16_t BC; // Index or counter
   uint16_t DE; // Index or destination for memory reads/writes
   uint16_t HL; // memory poitner, read and write specific ram addresses
-  
+
   // special 16 bit registers
-  uint16_t SP; // 
+  uint16_t SP; //
 };
 
-int main() { return 0; }
+int main() {
+
+  std::cout << "hello world" << std::endl;
+  return 0;
+}
