@@ -34,14 +34,7 @@ add_executable(
 # our main application executable 
 target_include_directories(gbemu PRIVATE include/)
 
-if(WIN32)
-    add_compile_definitions(OS_WINDOWS)
-    target_link_libraries(gbemu PRIVATE wsock32 ws2_32)
-elseif(APPLE)
-    add_compile_definitions(OS_MAC)
-    find_library(COCOA_LIBRARY Cocoa)
-    target_link_libraries(gbemu PRIVATE ${COCOA_LIBRARY})
-endif()
+
 
 add_executable(
     gbemu_tests
@@ -52,6 +45,36 @@ target_link_libraries(
     gbemu_tests
     GTest::gtest_main
 )
+if(WIN32)
+    add_compile_definitions(OS_WINDOWS)
+    target_link_libraries(gbemu PRIVATE wsock32 ws2_32)
+elseif(APPLE)
+    add_compile_definitions(OS_MAC)
+    find_library(COCOA_LIBRARY Cocoa)
+    target_link_libraries(gbemu PRIVATE ${COCOA_LIBRARY})
+
+    if(CMAKE_SYSTEM_PROCESSOR MATCHES "arm64")
+        set(LLVM_LIB_PATH "/opt/homebrew/opt/llvm/lib/c++")
+    else()
+        set(LLVM_LIB_PATH "/usr/local/opt/llvm/lib/c++")
+    endif()
+
+    target_compile_options(gbemu PRIVATE -stdlib=libc++)
+    target_link_options(gbemu PRIVATE 
+        -stdlib=libc++ 
+        -L${LLVM_LIB_PATH}
+        # Tell dyld at runtime: look HERE for libc++, not the system one
+        -Wl,-rpath,${LLVM_LIB_PATH}
+    )
+
+    target_compile_options(gbemu_tests PRIVATE -stdlib=libc++)
+    target_link_options(gbemu_tests PRIVATE 
+        -stdlib=libc++ 
+        -L${LLVM_LIB_PATH}
+        # Same for the test binary
+        -Wl,-rpath,${LLVM_LIB_PATH}
+    )
+endif()
 
 target_include_directories(gbemu_tests PRIVATE include/)
 
