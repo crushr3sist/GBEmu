@@ -1,0 +1,20 @@
+CompileFlags:
+  Add:
+    - "-std=c++23"
+  # Tell clangd where CMake outputs the JSON file
+  CompilationDatabase: build/
+---
+If:
+  Platform: windows
+CompileFlags:
+  Add:
+    - "--target=x86_64-pc-windows-msvc"
+    - "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH"
+
+---
+If:
+  Platform: mac
+CompileFlags:
+  Add: [-I/opt/homebrew/include]
+Diagnostics:
+  Suppress: ["include-cleaner"]
