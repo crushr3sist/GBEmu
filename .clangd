@@ -10,6 +10,14 @@ CompileFlags:
   Add:
     - "--target=x86_64-pc-windows-msvc"
     - "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH"
+    - "/I"
+    - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/include"
+    - "/I"
+    - "H:/Windows Kits/10/Include/10.0.26100.0/ucrt"
+    - "/I"
+    - "H:/Windows Kits/10/Include/10.0.26100.0/shared"
+    - "/I"
+    - "H:/Windows Kits/10/Include/10.0.26100.0/um"
 
 ---
 If:
