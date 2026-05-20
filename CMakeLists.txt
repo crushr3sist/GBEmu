@@ -31,6 +31,7 @@ add_executable(
     src/main.cpp
     src/Opcodes.cpp
     src/Cartridge.cpp
+    src/Processor.cpp
 )
 # our main application executable 
 target_include_directories(gbemu PRIVATE include/)
