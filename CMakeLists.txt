@@ -29,7 +29,8 @@ enable_testing()
 add_executable(
     gbemu
     src/main.cpp
-    src/test.cpp
+    src/Opcodes.cpp
+    src/Cartridge.cpp
 )
 # our main application executable 
 target_include_directories(gbemu PRIVATE include/)
@@ -38,7 +39,6 @@ target_include_directories(gbemu PRIVATE include/)
 
 add_executable(
     gbemu_tests
-    src/test.cpp
     src/tests/smoke_test.cpp
 )
 target_link_libraries(
