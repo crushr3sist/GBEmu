@@ -35,7 +35,7 @@ bool Cartridge::read_rom(const char *f) {
 }
 
 uint8_t Cartridge::read_byte(uint16_t address) {
-  
+
   if (address <= 0x7FFF) {
     return this->cartridge[address];
   }

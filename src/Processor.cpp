@@ -1,10 +1,25 @@
 #include "Processor.hpp"
-#include "Cartridge.hpp"
 #include <chrono>
+#include <cstdint>
 #include <format>
 #include <iostream>
 #include <print>
 #include <thread>
+
+uint8_t Processor::fetch_8_bytes() { return MMU.read(Reg.PC++); }
+
+uint8_t Processor::fetch_16_bytes() {
+  // this is for the immediate next value or data
+  // literally gets the next value aka pc value from the mmu
+  // and provides it
+  // we do need to get the lower byte and higher byte and assmble the bits
+  // accordingly due to edianness
+
+  uint8_t lo = fetch_8_bytes();
+  uint8_t hi = fetch_8_bytes();
+
+  return (hi << 8) | lo;
+}
 
 void Processor::main_loop() {
 

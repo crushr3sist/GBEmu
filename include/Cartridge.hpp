@@ -1,5 +1,6 @@
-// so we need a method for reading the whole thing into the cartridge
+#pragma once
 
+#include <cstdint>
 #include <vector>
 
 class Cartridge {

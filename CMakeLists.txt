@@ -10,8 +10,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-
-
 # add google test
 include(FetchContent)
 FetchContent_Declare(
@@ -25,16 +23,21 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
+# simplify getting the opcodes 
+file(GLOB OPCODES "src/opcodes/*.cpp")
+
 # our main application executable
 add_executable(
     gbemu
-    src/main.cpp
-    src/Opcodes.cpp
     src/Cartridge.cpp
+    src/main.cpp
+    src/MMU.cpp
     src/Processor.cpp
+    ${OPCODES}
 )
 # our main application executable 
 target_include_directories(gbemu PRIVATE include/)
+
 
 
 
