@@ -1,9 +1,13 @@
 #include "Processor.hpp"
+#include "Cartridge.hpp"
 #include <chrono>
+#include <format>
 #include <iostream>
+#include <print>
 #include <thread>
 
 void Processor::main_loop() {
+
   // our cpu cycles are a budget we need to work against
   // the gameboy had to depend on a certain amount of cpu cycles to draw the
   // pixels and implement game logic nowadays we have higher level functoins and
@@ -23,6 +27,16 @@ void Processor::main_loop() {
 
   // our running flag
   bool emulator_is_running = true;
+
+  // we need to initialise our PC register
+  Reg.PC = 0x0100;
+
+  // we now read our cartridge
+  std::cout << "reading" << std::endl;
+  Cartridge cart;
+  cart.read_rom("./../test.gb");
+  std::cout << "read properly" << std::endl;
+
   // the max cycles we're allowed per frame is approx 70k
   const int MAX_CYCLES_PER_FRAME = 70224;
   // and we need to convert the 59.7 frames per second to miliseconds to play
@@ -54,7 +68,21 @@ void Processor::main_loop() {
       // functoin, it needs to be called here, in this loop because that
       // function is going to return the cpu cycles
 
-      int cycles_taken = 8; // we need dummy values
+      // we need to read the cartridge's current address at the
+
+      // so we need to read the value of the cartridge at the index of where our
+      // PC is.
+
+      uint8_t current_op = cart.read_byte(Reg.PC);
+
+      if (current_op < 255 && current_op > 0) {
+
+        std::cout << "current op is: ";
+        std::print("{:#x}\n", current_op);
+      }
+
+      int cycles_taken = 8; // NOTE - this is where we call the fetch decode
+                            // function, it will return the cycles
 
       cycles_this_frame += cycles_taken;
 
@@ -64,6 +92,7 @@ void Processor::main_loop() {
       NULL;
       // and then we need to update our audio
       NULL;
+      Reg.PC++;
     }
 
     // Once we've ued up our cpu cycles, we can now draw to the screen

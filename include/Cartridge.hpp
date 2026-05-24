@@ -10,6 +10,7 @@ public:
   bool read_rom(const char *);
   uint8_t read_byte(uint16_t address);
 
-private:
   std::vector<uint8_t> cartridge;
+
+private:
 };
