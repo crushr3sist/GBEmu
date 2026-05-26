@@ -3,19 +3,19 @@ CompileFlags:
     - "-std=c++23"
     - "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH"
     - "-Wno-unknown-argument"
-    
+
     # --- Mac Paths (Silently ignored by Windows) ---
     - "-isystem"
     - "/opt/homebrew/include"
-    
+
     # --- Windows Paths (Silently ignored by Mac) ---
-    - "-imsvc"
+    - "-isystem"
     - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/include"
-    - "-imsvc"
+    - "-isystem"
     - "H:/Windows Kits/10/Include/10.0.26100.0/ucrt"
-    - "-imsvc"
+    - "-isystem"
     - "H:/Windows Kits/10/Include/10.0.26100.0/shared"
-    - "-imsvc"
+    - "-isystem"
     - "H:/Windows Kits/10/Include/10.0.26100.0/um"
 
   # Tell clangd where CMake outputs the JSON file
