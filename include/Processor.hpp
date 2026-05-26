@@ -1,10 +1,16 @@
 #include "MMU.hpp"
 #include <cstdint>
 
+struct Flags {
+  uint8_t Z;
+  uint8_t N;
+  uint8_t H;
+  uint8_t C;
+};
 struct Registers {
   union {
     struct {
-      uint8_t F; // Flags      : Results of operations using its upper 4 bits
+      Flags F;
       uint8_t A; // Accumulator: all math and logic operations
     };
     uint16_t AF; // ACCUM + Flags: Used for pushing and poping state to stack

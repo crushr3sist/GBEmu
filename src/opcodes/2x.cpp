@@ -1,6 +1,7 @@
 #include "Processor.hpp"
+#include <cstdint>
 
-Opcode Processor::_2x0() {
+Opcode Processor::_2x0() { // NOTE - no clue what jr is
   int a;
   int b;
   NULL;
@@ -8,40 +9,38 @@ Opcode Processor::_2x0() {
   return {2, 2};
 }
 
-Opcode Processor::_2x1() {
-  int a;
-  int b;
-  NULL;
+Opcode Processor::_2x1() { // NOTE - ✓
+  Reg.HL = fetch_16_bytes();
+
+  return {3, 3};
+}
+Opcode Processor::_2x2() { // NOTE - ✓
+  MMU.write(Reg.HL++, Reg.A);
+
+  return {1, 2};
+}
+Opcode Processor::_2x3() { // NOTE - ✓
+  Reg.HL++;
 
   return {2, 2};
 }
-Opcode Processor::_2x2() {
-  int a;
-  int b;
-  NULL;
+Opcode Processor::_2x4() { // NOTE - ✓
+  uint8_t result = Reg.H + 1;
+  Reg.F.Z = (result == 0);
+  Reg.F.N = 0;
+  Reg.F.H = ((Reg.H & 0x0F) + 1) > 0x0F;
+  Reg.H = result;
 
-  return {2, 2};
+  return {1, 1};
 }
-Opcode Processor::_2x3() {
-  int a;
-  int b;
-  NULL;
+Opcode Processor::_2x5() { // NOTE - ✓
+  uint8_t result = Reg.H - 1;
+  Reg.F.Z = (result == 0);
+  Reg.F.N = 1;
+  Reg.F.H = ((Reg.H & 0x0F) + 1) > 0x0F;
+  Reg.H = result;
 
-  return {2, 2};
-}
-Opcode Processor::_2x4() {
-  int a;
-  int b;
-  NULL;
-
-  return {2, 2};
-}
-Opcode Processor::_2x5() {
-  int a;
-  int b;
-  NULL;
-
-  return {2, 2};
+  return {1, 1};
 }
 Opcode Processor::_2x6() {
   int a;

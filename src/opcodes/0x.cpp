@@ -1,6 +1,7 @@
 #include "Processor.hpp"
+#include <cstdint>
 
-Opcode Processor::_0x0() {
+Opcode Processor::_0x0() { // NOTE - ✓
   /*
     NOP
     1 1
@@ -11,7 +12,7 @@ Opcode Processor::_0x0() {
   return {1, 1};
 }
 
-Opcode Processor::_0x1() {
+Opcode Processor::_0x1() { // NOTE - ✓
   /*
     LD BC, d16
     3 3
@@ -21,7 +22,7 @@ Opcode Processor::_0x1() {
   return {3, 3};
 }
 
-Opcode Processor::_0x2() {
+Opcode Processor::_0x2() { // NOTE - ✓
   /*
   LD (BC), A
   1 2
@@ -32,25 +33,40 @@ Opcode Processor::_0x2() {
   return {1, 2};
 }
 
-Opcode Processor::_0x3() {
+Opcode Processor::_0x3() { // NOTE - ✓
+  /*
+  sinc BC
+    1 2
+    ----
+  */
   Reg.BC++;
   return {1, 2};
 }
 
-Opcode Processor::_0x4() {
-  uint8_t data_from_b = Reg.B;
+Opcode Processor::_0x4() { // NOTE - ✓
+  /*
+  inc B
+  1 1
+  z0h-
+  */
 
-  data_from_b++;
+  uint8_t result = Reg.B + 1;
 
-  Reg.B = data_from_b;
+  Reg.F.Z = (result == 0);
+  Reg.F.N = 0;
+  Reg.F.H = ((Reg.B & 0x0F) + 1) > 0x0F;
+  Reg.B = result;
 
   return {1, 1};
 }
 
-Opcode Processor::_0x5() {
-  int a;
-  int b;
-  NULL;
+Opcode Processor::_0x5() { // NOTE - ✓
+
+  uint8_t result = Reg.B - 1;
+  Reg.F.Z = (result == 0);
+  Reg.F.N = 1;
+  Reg.F.H = ((Reg.B & 0x0F) + 1) > 0x0F;
+  Reg.B = result;
 
   return {1, 1};
 }
