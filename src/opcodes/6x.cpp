@@ -1,115 +1,87 @@
 #include "Processor.hpp"
 
 Opcode Processor::_6x0() {
-  int a;
-  int b;
-  NULL;
+  Reg.H = Reg.B;
 
-  return {6, 6};
+  return {1, 1};
 }
 
 Opcode Processor::_6x1() {
-  int a;
-  int b;
-  NULL;
+  Reg.H = Reg.C;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6x2() {
-  int a;
-  int b;
-  NULL;
+  Reg.H = Reg.D;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6x3() {
-  int a;
-  int b;
-  NULL;
+  Reg.H = Reg.E;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6x4() {
-  int a;
-  int b;
-  NULL;
+  Reg.H = Reg.H;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6x5() {
-  int a;
-  int b;
-  NULL;
+  Reg.H = Reg.L;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6x6() {
   int a;
   int b;
   NULL;
 
-  return {6, 6};
+  return {1, 2};
 }
 Opcode Processor::_6x7() {
-  int a;
-  int b;
-  NULL;
+  Reg.H = Reg.A;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6x8() {
-  int a;
-  int b;
-  NULL;
+  Reg.L = Reg.B;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6x9() {
-  int a;
-  int b;
-  NULL;
+  Reg.L = Reg.C;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6xA() {
-  int a;
-  int b;
-  NULL;
+  Reg.L = Reg.D;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6xB() {
-  int a;
-  int b;
-  NULL;
+  Reg.L = Reg.E;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6xC() {
-  int a;
-  int b;
-  NULL;
+  Reg.L = Reg.H;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6xD() {
-  int a;
-  int b;
-  NULL;
+  Reg.L = Reg.L;
 
-  return {6, 6};
+  return {1, 1};
 }
 Opcode Processor::_6xE() {
   int a;
   int b;
   NULL;
 
-  return {6, 6};
+  return {1, 2};
 }
 Opcode Processor::_6xF() {
-  int a;
-  int b;
-  NULL;
+  Reg.L = Reg.A;
 
-  return {6, 6};
+  return {1, 1};
 }
