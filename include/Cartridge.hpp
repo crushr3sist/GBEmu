@@ -12,6 +12,4 @@ public:
   uint8_t read_byte(uint16_t address);
 
   std::vector<uint8_t> cartridge;
-
-private:
 };

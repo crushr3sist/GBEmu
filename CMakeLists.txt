@@ -24,7 +24,9 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # simplify getting the opcodes 
-file(GLOB OPCODES "src/opcodes/*.cpp")
+file(GLOB OPCODES "${CMAKE_CURRENT_SOURCE_DIR}/src/opcodes/*.cpp")
+
+
 
 # our main application executable
 add_executable(
@@ -39,16 +41,16 @@ add_executable(
 target_include_directories(gbemu PRIVATE include/)
 
 
-
-
 add_executable(
     gbemu_tests
     src/tests/smoke_test.cpp
 )
+
 target_link_libraries(
     gbemu_tests
     GTest::gtest_main
 )
+
 if(WIN32)
     add_compile_definitions(OS_WINDOWS)
     target_link_libraries(gbemu PRIVATE wsock32 ws2_32)

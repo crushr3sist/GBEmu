@@ -1,14 +1,11 @@
 CompileFlags:
+  Compiler: "clang++"
   Add:
     - "-std=c++23"
     - "-D_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH"
     - "-Wno-unknown-argument"
 
-    # --- Mac Paths (Silently ignored by Windows) ---
-    - "-isystem"
-    - "/opt/homebrew/include"
-
-    # --- Windows Paths (Silently ignored by Mac) ---
+    # --- Windows Paths (Clang needs these for MSVC STL) ---
     - "-isystem"
     - "C:/Program Files (x86)/Microsoft Visual Studio/18/BuildTools/VC/Tools/MSVC/14.50.35717/include"
     - "-isystem"
@@ -18,7 +15,6 @@ CompileFlags:
     - "-isystem"
     - "H:/Windows Kits/10/Include/10.0.26100.0/um"
 
-  # Tell clangd where CMake outputs the JSON file
   CompilationDatabase: build/
 
 Diagnostics:

@@ -21,11 +21,14 @@
       }
     ]
   },
+  "cmake.generator": "Ninja",
   "cmake.configureOnOpen": true,
   "cmake.buildDirectory": "${workspaceFolder}/build",
   "clangd.arguments": [
     "--compile-commands-dir=${workspaceFolder}/build",
     "--background-index",
-    "--clang-tidy"
-  ]
+    "--clang-tidy",
+    "--header-insertion=never"
+  ],
+  "C_Cpp.intelliSenseEngine": "disabled"
 }
